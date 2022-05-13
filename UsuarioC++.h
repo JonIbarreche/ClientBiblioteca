@@ -1,3 +1,4 @@
+//BORRAR
 #ifndef USUARIOC___H_
 #define USUARIOC___H_
 
