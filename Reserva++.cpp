@@ -57,10 +57,13 @@ namespace res
 		this->cBiblioteca = cBiblioteca;
 	}
 
-	void imprimirReserva(Reserva r)
+	void imprimirReserva(Reserva* r, int tam)
 	{
-		cout << r.getCReserva() << endl;
-		cout << r.getCUsuario() << endl;
-		cout << r.getCBiblioteca() << endl;
+		int i;
+		for (i = 0; i < tam; i++){
+		cout << "Numero de reserva: " << i+1 << endl;
+		cout << "Usuario: " << r[i].getCUsuario() << endl;
+		cout << "Codigo de biblioteca: " << r[i].getCBiblioteca() << endl;
+		}
 	}
 }

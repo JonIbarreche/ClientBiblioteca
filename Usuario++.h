@@ -1,3 +1,8 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 #ifndef USUARIOC___H_
 #define USUARIOC___H_
 
@@ -7,26 +12,26 @@ class Usuario
 	{
 	private:
 		int cUsuario;
-		char nombre[20];
-		char apellido[20];
-		char nomUsuario[20];
-		char contrasenya[20];
+		string nombre;
+		string apellido;
+		string nomUsuario;
+		string contrasenya;
 
 	public:
 		Usuario();
-		Usuario(int cUsuario,  char nombre[30], char apellido[20], char contrasenya[20], char nomUsuario[20]);
+		Usuario(int cUsuario,  string nombre, string apellido, string contrasenya, string nomUsuario);
 		~Usuario();
 
 		int getCUsuario();
 		void setCUsuario(int cUsuario);
-		char* getNombre();
-		void setNombre(char nombre[20]);
-		char* getApellido();
-		void setApellido(char apellido[20]);
-		char* getNomUsuario();
-		void setNomUsuario(char nomUsuario[20]);
-		char* getContrasenya();
-		void setContrasenya(char contrasenya[20]);
+		string getNombre();
+		void setNombre(string nombre);
+		string getApellido();
+		void setApellido(string apellido);
+		string getNomUsuario();
+		void setNomUsuario(string nomUsuario);
+		string getContrasenya();
+		void setContrasenya(string contrasenya);
 
 		void imprimirUsuario(Usuario u);
 	};

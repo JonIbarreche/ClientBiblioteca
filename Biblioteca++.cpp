@@ -13,37 +13,33 @@
 
 using namespace std;
 
-namespace bi
+namespace res
 {
 	Biblioteca::Biblioteca()
 		{
 		cBiblioteca = 0;
-		strcpy(nombre, "Biblioteca de Deusto");
+		nombre = "Biblioteca de Deusto";
 		aforo = 100;
-		strcpy(estado, "10:00 - 20:00");
-		strcpy(genero, "Docencia");
-		strcpy(instalacion, "Zona fumadores");
-		strcpy(barrio, "Deusto");
+		estado = "10:00 - 20:00";
+		genero = "Docencia";
+		instalacion = "Zona estudio";
+		barrio = "Deusto";
 		}
-	Biblioteca::Biblioteca(int cBiblioteca, char nombre[40], int aforo, char estado[20], char genero[15], char instalacion[20], char barrio[15])
+	Biblioteca::Biblioteca(int cBiblioteca, string nombre, int aforo, string estado, string genero, string instalacion, string barrio)
 		{
 			this->cBiblioteca = cBiblioteca;
-			strcpy(this->nombre, nombre);
+			this->nombre, nombre;
 			this->aforo = aforo;
-			strcpy(this->estado, estado);
-			strcpy(this->genero, genero);
-			strcpy(this->instalacion, instalacion);
-			strcpy(this->barrio, barrio);
+			this->estado, estado;
+			this->genero, genero;
+			this->instalacion, instalacion;
+			this->barrio, barrio;
 		}
 
 		//Creo que este destructor hace lo que tiene que hacer, pero no estoy seguro
 	Biblioteca::~Biblioteca()
 		{
-			delete[] nombre;
-			delete[] estado;
-			delete[] genero;
-			delete[] instalacion;
-			delete[] barrio;
+
 		}
 
 		int Biblioteca::getCBiblioteca()
@@ -54,13 +50,13 @@ namespace bi
 		{
 			this->cBiblioteca = cBiblioteca;
 		}
-		char* Biblioteca::getNombre()
+		string Biblioteca::getNombre()
 		{
 			return nombre;
 		}
-		void Biblioteca::setNombre(char nombre[40])
+		void Biblioteca::setNombre(string nombre)
 		{
-			strcpy(this->nombre, nombre);
+			this->nombre = nombre;
 		}
 		int Biblioteca::getAforo()
 		{
@@ -70,47 +66,62 @@ namespace bi
 		{
 			this->aforo = aforo;
 		}
-		char* Biblioteca::getEstado()
+		string Biblioteca::getEstado()
 		{
 			return estado;
 		}
-		void Biblioteca::setEstado(char estado[20])
+		void Biblioteca::setEstado(string estado)
 		{
-			strcpy(this->estado, estado);
+			this->estado = estado;
 		}
-		char* Biblioteca::getGenero()
+		string Biblioteca::getGenero()
 		{
 			return genero;
 		}
-		void Biblioteca::setGenero(char genero[15])
+		void Biblioteca::setGenero(string genero)
 		{
-			strcpy(this->genero, genero);
+			this->genero = genero;
 		}
-		char* Biblioteca::getInstalacion()
+		string Biblioteca::getInstalacion()
 		{
 			return instalacion;
 		}
-		void Biblioteca::setInstalacion(char instalacion[20])
+		void Biblioteca::setInstalacion(string instalacion)
 		{
-			strcpy(this->instalacion, instalacion);
+			this->instalacion = instalacion;
 		}
-		char* Biblioteca::getBarrio()
+		string Biblioteca::getBarrio()
 		{
 			return barrio;
 		}
-		void Biblioteca::setBarrio(char barrio[15])
+		void Biblioteca::setBarrio(string barrio)
 		{
-			strcpy(this->barrio, barrio);
+			this->barrio, barrio;
 		}
 
 		void Biblioteca::imprimirBiblioteca(Biblioteca b)
 		{
-			cout << b.getCBiblioteca() << endl;
-			cout << b.getNombre() << endl;
-			cout << b.getAforo() << endl;
-			cout << b.getEstado() << endl;
-			cout << b.getGenero() << endl;
-			cout << b.getInstalacion() << endl;
-			cout << b.getBarrio() << endl;
+			cout << "Codigo Biblioteca: " << b.getCBiblioteca() << endl;
+			cout << "Nombre Biblioteca: " << b.getNombre() << endl;
+			cout << "Aforo: " << b.getAforo() << endl;
+			cout << "Horarios: " << b.getEstado() << endl;
+			cout << "Genero: " << b.getGenero() << endl;
+			cout << "Instalaciones: " << b.getInstalacion() << endl;
+			cout << "Barrio: " <<b.getBarrio() << endl;
+		}
+
+		void Biblioteca::imprimirBibliotecas(Biblioteca* b, int tam)
+		{
+			int i;
+			for(i = 0; i < tam; ++i){
+				cout << "Codigo Biblioteca: " << i+1 << endl;
+				cout << "Nombre Biblioteca: " << b[i].getNombre() << endl;
+				cout << "Aforo: " << b[i].getAforo() << endl;
+				cout << "Horarios: " << b[i].getEstado() << endl;
+				cout << "Genero: " << b[i].getGenero() << endl;
+				cout << "Instalaciones: " << b[i].getInstalacion() << endl;
+				cout << "Barrio: " << b[i].getBarrio() << "\n\n" << endl;
+			}
+
 		}
 }

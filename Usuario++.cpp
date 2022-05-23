@@ -11,27 +11,24 @@ namespace logIn
 	Usuario::Usuario()
 	{
 		cUsuario = 0;
-		strcpy(nombre, "Unai");
-		strcpy(apellido, "Fernandez");
-		strcpy(nomUsuario, "Uni");
-		strcpy(contrasenya, "xxx");
+		nombre = "Unai";
+		apellido = "Fernandez";
+		nomUsuario = "Uni";
+		contrasenya = "xxx";
 	}
 
-	Usuario::Usuario(int cUsuario, char nombre[30], char apellido[20], char nomUsuario[30], char contrasenya[20])
+	Usuario::Usuario(int cUsuario, string nombre, string apellido, string nomUsuario, string contrasenya)
 	{
 		this->cUsuario = cUsuario;
-		strcpy(this->nombre, nombre);
-		strcpy(this->apellido, apellido);
-		strcpy(this->nomUsuario, nomUsuario);
-		strcpy(this->contrasenya, contrasenya);
+		this->nombre = nombre;
+		this->apellido = apellido;
+		this->nomUsuario = nomUsuario;
+		this->contrasenya = contrasenya;
 	}
 
 	Usuario::~Usuario()
 	{
-		delete[] nombre;
-		delete[] apellido;
-		delete[] nomUsuario;
-		delete[] contrasenya;
+
 	}
 
 	int Usuario::getCUsuario()
@@ -42,37 +39,37 @@ namespace logIn
 	{
 		this->cUsuario = cUsuario;
 	}
-	char* Usuario::getNombre()
+	string Usuario::getNombre()
 	{
 		return nombre;
 	}
-	void Usuario::setNombre(char nombre[20])
+	void Usuario::setNombre(string nombre)
 	{
-		strcpy(this->nombre, nombre);
+		this->nombre = nombre;
 	}
-	char* Usuario::getApellido()
+	string Usuario::getApellido()
 	{
 		return apellido;
 	}
-	void Usuario::setApellido(char apellido[20])
+	void Usuario::setApellido(string apellido)
 	{
-		strcpy(this->apellido, apellido);
+		this->apellido = apellido;
 	}
-	char* Usuario::getNomUsuario()
+	string Usuario::getNomUsuario()
 	{
 		return nomUsuario;
 	}
-	void Usuario::setNomUsuario(char nomUsuario[30])
+	void Usuario::setNomUsuario(string nomUsuario)
 	{
-		strcpy(this->nomUsuario, nomUsuario);
+		this->nomUsuario = nomUsuario;
 	}
-	char* Usuario::getContrasenya()
+	string Usuario::getContrasenya()
 	{
 		return contrasenya;
 	}
-	void Usuario::setContrasenya(char contrasenya[20])
+	void Usuario::setContrasenya(string contrasenya)
 	{
-		strcpy(this->contrasenya, contrasenya);
+		this->contrasenya = contrasenya;
 	}
 
 	void Usuario::imprimirUsuario(Usuario u)

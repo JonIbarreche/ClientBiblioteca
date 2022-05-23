@@ -29,8 +29,8 @@ class Reserva
 		int getCBiblioteca();
 		void setCBiblioteca(int cBiblioteca);
 
-		void imprimirReserva(Reserva r);
+		void imprimirReserva(Reserva* r, int tam);
 	};
 }
 
-#endif /* RESERVAC___H_ */
+#endif /* RESERVA___H_ */
