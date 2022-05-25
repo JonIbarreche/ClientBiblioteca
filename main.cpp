@@ -84,8 +84,8 @@ void registroSocio(SOCKET s)
 void reservarBiblioteca(SOCKET s, int cUsuario) {
 	int asiento = 1;
 	int tam = 0;
-	int aforo = 0;
-	int i = 0;
+	int aforo;
+	int i;
 	int op;
 
 	cout << "Biliotecas disponibles en Bilbao: \n" << endl;
@@ -100,7 +100,8 @@ void reservarBiblioteca(SOCKET s, int cUsuario) {
 	for (i = 0; i < 50; i++) {
 		recv(s, recvBuff, sizeof(recvBuff), 0);
 
-		if (strcmp(recvBuff, "FINBUSCA")) {
+		if (strcmp(recvBuff, "FINBUSCA") == 0) {
+			recv(s, recvBuff, sizeof(recvBuff), 0);
 			bibliotecas[i].setCBiblioteca(atoi(recvBuff));
 			recv(s, recvBuff, sizeof(recvBuff), 0);
 			string s1 = recvBuff;
@@ -119,31 +120,41 @@ void reservarBiblioteca(SOCKET s, int cUsuario) {
 			recv(s, recvBuff, sizeof(recvBuff), 0);
 			string s5 = recvBuff;
 			bibliotecas[i].setBarrio(s5);
-		} else {
+		} else if (strcmp(recvBuff, "FINBUSCA-END") == 0) {
 			tam = i;
 			i = 50;
 		}
 	}
 
 	bibliotecas[0].Biblioteca::imprimirBibliotecas(bibliotecas, tam);
-	cout << "Si no sale la biblioteca que desea pulse 1." << endl;
+	cout << "Si no sale la biblioteca que desea pulse 99." << endl;
+	cout << "Si quiere seguir con el proceso pulse 98." << endl;
+	cout << "¿Que desea? (99/98)." << endl;
 	cin >> op;
-	if (op == 1) {
+
+	if (op == 99) {
 		cout << "Sentimos las molestas." << endl;
 		menuPrincipal();
-	}
-	cout << "¿En que Biblioteca quiere hacer una reserva?:" << endl;
-	cout << "" << endl;
-	cin >> asiento;
-	cout << "" << endl;
+	} else if (op == 98) {
 
-	cout << "La biblioteca seleccionada dispone de " << bibliotecas[asiento-1].getAforo() << " asientos." << endl;
-	cout << "Cuantas plazas vas a reservar? (En este momento solo se puede reservar un asiento)" << endl;
-	cin >> aforo;
+		cout << "¿En que Biblioteca quiere hacer una reserva?:" << endl;
+		cout << "" << endl;
+		cin >> asiento;
+		cout << "" << endl;
+
+		cout << "La biblioteca seleccionada dispone de "
+				<< bibliotecas[asiento - 1].getAforo() << " asientos." << endl;
+		cout
+				<< "Cuantas plazas vas a reservar? (En este momento solo se puede reservar un asiento)"
+				<< endl;
+		cin >> aforo;
+
+
 	if (aforo == 1) {
-			cout << "Gracias por su colaboracion." << endl;
+		cout << "Gracias por su colaboracion." << endl;
 	} else if (aforo > 1) {
 		cout << "Lo sentimos, no puede seleccionar mas de 1 asiento en este momento." << endl;
+	}
 	}
 	cout << "\n";
 
@@ -189,18 +200,18 @@ void menuSecundario(SOCKET s, int cUsuario)
 					registroSocio(s);
 					break;
 				case 2 :
-					//reservarBiblioteca(s, cUsuario);
+					reservarBiblioteca(s, cUsuario);
 					break;
 				case 3 :
 					cout << "Quiere cerrar su sesion?" << endl;
 					cout << "(1 = SI. 0 = NO)" << endl;
 					cin >> op;
 					if (op == 0) {
-						//Va al menu principal
+						menuSecundario(s, cUsuario);
 					} else if (op == 1) {
+						cout << "Su sesion ha sido finalizada..." << endl;
 						menuPrincipal();
 					}
-					cout << "Su sesion ha sido finalizada..." << endl;
 					break;
 				default:
 					cout << "Por favor, seleccione otra opcion." << endl;
@@ -225,29 +236,41 @@ void inicioSesionMenu(SOCKET s)
 	// RECEIVING response from the server
 		int i = 0;
 		for (i = 0; i < 50; i++) {
+			printf("a");
 			recv(s, recvBuff, sizeof(recvBuff), 0);
+			printf("b");
+			cout << recvBuff;
 
-			if (strcmp(recvBuff, "FININICIO")) {
+			if (strcmp(recvBuff, "USERDATA") == 0) {
+				cout << "h0";
+				recv(s, recvBuff, sizeof(recvBuff), 0);
 				usuarios[i].setCUsuario(atoi(recvBuff));
+				printf("1");
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				string s1 = recvBuff;
 				usuarios[i].setNombre(s1);
+				printf("2");
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				string s2 = recvBuff;
 				usuarios[i].setApellido(s2);
+				printf("3");
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				string s3 = recvBuff;
 				usuarios[i].setNomUsuario(s3);
+				printf("4");
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				string s4 = recvBuff;
 				usuarios[i].setContrasenya(s4);
-				recv(s, recvBuff, sizeof(recvBuff), 0);
-			} else {
+				printf("5");
+				//recv(s, recvBuff, sizeof(recvBuff), 0);
+			}
+			if (strcmp(recvBuff, "ENDUSERDATA") == 0) {
+				printf("19");
 				i = 50;
 			}
 		}
 
-		cout << "Introduzca su nombre de USUARIO:" << endl;
+		cout << "Introduzca su nombre de USUARIOooooo:" << endl;
 		cin.ignore(1, '\n');
 		getline(cin, nomUsuario);
 		cout << "Introduzca su contrasenya:" << endl;

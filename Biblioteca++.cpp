@@ -28,16 +28,15 @@ namespace res
 	Biblioteca::Biblioteca(int cBiblioteca, string nombre, int aforo, string estado, string genero, string instalacion, string barrio)
 		{
 			this->cBiblioteca = cBiblioteca;
-			this->nombre, nombre;
+			this->nombre = nombre;
 			this->aforo = aforo;
-			this->estado, estado;
-			this->genero, genero;
-			this->instalacion, instalacion;
-			this->barrio, barrio;
+			this->estado = estado;
+			this->genero = genero;
+			this->instalacion = instalacion;
+			this->barrio = barrio;
 		}
 
-		//Creo que este destructor hace lo que tiene que hacer, pero no estoy seguro
-	Biblioteca::~Biblioteca()
+		Biblioteca::~Biblioteca()
 		{
 
 		}
